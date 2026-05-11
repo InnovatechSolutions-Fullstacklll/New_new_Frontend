@@ -1,18 +1,62 @@
+/* --- 1. RESETEO GLOBAL --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Fundamental para que el width: 100% funcione con padding */
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* Seguridad extra contra scroll horizontal */
+  background: #020b1c;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* --- 2. HEADER (NAVBAR) --- */
 .site-header {
-  background: #ffffff;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  width: 100%;             /* Abarca todo el ancho de la página */
+  position: fixed;         /* Se mantiene fijo al hacer scroll */
+  top: 0;
+  left: 0;                 /* Alineado al borde izquierdo absoluto */
+  background: rgba(11, 16, 37, 0.95);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 22px 32px;
-  gap: 16px;
-  box-shadow: 0 2px 18px rgba(15, 23, 42, 0.05);
+  padding: 15px 10%;       /* Centra el contenido internamente */
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.site-header img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.site-header img:hover {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .brand {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #242236;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
 }
 
 .nav-actions {
@@ -24,38 +68,104 @@
 
 .nav-actions button {
   border: none;
-  border-radius: 999px;
-  padding: 10px 18px;
+  border-radius: 14px;
+  padding: 12px 22px;
   font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .nav-actions button:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
+/* --- 3. BOTONES COMPARTIDOS --- */
 .button-primary {
-  background: #4f46e5;
+  background: linear-gradient(90deg, #8f00ff, #ff7300);
   color: #ffffff;
-  box-shadow: 0 14px 30px rgba(79, 70, 229, 0.18);
+  box-shadow: 0 14px 30px rgba(143, 0, 255, 0.24);
+  border: none;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .button-secondary {
-  background: transparent;
-  color: #4f46e5;
-  border: 1px solid rgba(79, 70, 229, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 12px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button-primary:hover, .button-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(143, 0, 255, 0.3);
+}
+
+/* --- 4. CONTENIDO ADICIONAL --- */
+.illustration-card {
+  font-size: 4rem;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* --- 5. FOOTER (CORREGIDO) --- */
+.site-footer {
+  width: 100%;             /* Corregido de 100vw */
+  background: #020b1c;
+  padding: 40px 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-line {
+  width: 100%;
+  max-width: 400px;
+  height: 4px;
+  background: linear-gradient(90deg, #8f00ff, #ff7300);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.footer-text {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+/* --- 6. RESPONSIVE --- */
+@media (max-width: 900px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 100px 5% 60px; /* Añadido padding top para que el header fixed no tape el título */
+  }
+  .site-header { 
+    padding: 15px 5%; 
+  }
 }
 
 @media (max-width: 600px) {
   .site-header {
     flex-direction: column;
-    align-items: stretch;
+    gap: 15px;
     text-align: center;
   }
 
   .nav-actions {
     justify-content: center;
+    width: 100%;
+  }
+
+  .nav-actions button {
+    width: 100%;
   }
 }

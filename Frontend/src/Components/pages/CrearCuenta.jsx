@@ -4,6 +4,8 @@ import { registerUser } from '../../Service/authService'
 import Navbar from '../Organism/Navbar'
 import Footer from '../Organism/Footer'
 import '../Style/CrearCuenta.css'
+import Logo from "../../assets/Logos/Logo.jpeg";
+import Fondo2 from "../../assets/Logos/Fondo2.jpeg";
 
 export default function CrearCuenta() {
   const [nombre, setNombre] = useState('')
@@ -82,7 +84,7 @@ export default function CrearCuenta() {
               <div className="welcome-image-placeholder">
                 <div className="temp-illustration">
                   <img
-                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=640&q=80"
+                    src={Fondo2}
                     alt="Ilustración de registro"
                   />
                 </div>
@@ -90,7 +92,7 @@ export default function CrearCuenta() {
               <div className="brand-footer">
                 <div className="brand-logo">
                   <img
-                    src="https://via.placeholder.com/45"
+                    src={Logo}
                     alt="Logo marca"
                   />
                 </div>

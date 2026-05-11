@@ -1,7 +1,7 @@
 // src/Service/config.js
 const config = {
   development: {
-    API_BASE_URL: 'http://localhost:8080',
+    API_BASE_URL: 'http://localhost:8082',
   },
   production: {
     API_BASE_URL: 'https://tu-api-produccion.com',

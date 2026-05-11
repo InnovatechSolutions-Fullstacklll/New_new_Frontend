@@ -86,7 +86,7 @@ function Login() {
                                         alt="Logo marca"
                                     />
                                 </div>
-                                <div className="brand-name">Innovatech<br/>Solutions</div>
+                                <div className="brand-name">Innovatech</div>
                             </div>
                         </section>
 
