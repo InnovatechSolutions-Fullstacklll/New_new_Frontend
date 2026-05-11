@@ -1,9 +1,7 @@
 // src/Service/__tests__/config.test.js
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+const originalEnv = process.env;
 
 describe('Configuration', () => {
-  const originalEnv = process.env;
-
   beforeEach(() => {
     vi.resetModules();
     process.env = { ...originalEnv };
@@ -20,7 +18,7 @@ describe('Configuration', () => {
     // Re-importar para obtener el nuevo valor
     const { API_BASE_URL: apiUrl } = await import('../config');
 
-    expect(apiUrl).toBe('http://localhost:8082');
+    expect(apiUrl).toBe('http://localhost:9090');
   });
 
   it('should use development API URL when NODE_ENV is development', async () => {
@@ -28,7 +26,7 @@ describe('Configuration', () => {
 
     const { API_BASE_URL: apiUrl } = await import('../config');
 
-    expect(apiUrl).toBe('http://localhost:8082');
+    expect(apiUrl).toBe('http://localhost:9090');
   });
 
   it('should use production API URL when NODE_ENV is production', async () => {

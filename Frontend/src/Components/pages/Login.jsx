@@ -112,7 +112,7 @@ function Login() {
                                     <label htmlFor="clave1">Contraseña:</label>
                                     <input
                                         id="clave1"
-                                        type="clave1"
+                                        type="password"
                                         value={clave1}
                                         onChange={(e) => setClave1(e.target.value)}
                                         placeholder="********"

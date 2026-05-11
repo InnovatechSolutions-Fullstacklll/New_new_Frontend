@@ -1,8 +1,4 @@
 // src/Service/__tests__/api.test.js
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import axios from 'axios';
-import api from '../api';
-
 // Mock de axios
 vi.mock('axios', () => ({
   default: {
@@ -17,13 +13,17 @@ const localStorageMock = {
   removeItem: vi.fn(),
   clear: vi.fn(),
 };
-global.localStorage = localStorageMock;
+globalThis.localStorage = localStorageMock;
 
 describe('API Configuration', () => {
   let mockAxiosInstance;
+  let axios;
 
-  beforeEach(() => {
+  beforeEach(async () => {
+    vi.resetModules();
     vi.clearAllMocks();
+
+    axios = (await import('axios')).default;
 
     // Mock del instance de axios
     mockAxiosInstance = {
@@ -40,10 +40,8 @@ describe('API Configuration', () => {
     axios.create.mockReturnValue(mockAxiosInstance);
   });
 
-  it('should create axios instance with correct configuration', () => {
-    // Re-importar para activar el mock
-    vi.resetModules();
-    require('../api');
+  it('should create axios instance with correct configuration', async () => {
+    const { default: apiModule } = await import('../api');
 
     expect(axios.create).toHaveBeenCalledWith({
       baseURL: expect.any(String), // Se verifica en config.test.js
@@ -52,18 +50,17 @@ describe('API Configuration', () => {
       },
       timeout: 10000,
     });
+    expect(apiModule).toBeDefined();
   });
 
-  it('should have request interceptor configured', () => {
-    vi.resetModules();
-    require('../api');
+  it('should have request interceptor configured', async () => {
+    await import('../api');
 
     expect(mockAxiosInstance.interceptors.request.use).toHaveBeenCalled();
   });
 
-  it('should have response interceptor configured', () => {
-    vi.resetModules();
-    require('../api');
+  it('should have response interceptor configured', async () => {
+    await import('../api');
 
     expect(mockAxiosInstance.interceptors.response.use).toHaveBeenCalled();
   });

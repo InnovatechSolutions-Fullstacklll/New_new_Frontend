@@ -1,8 +1,4 @@
 // src/Service/__tests__/authService.test.js
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { loginUser, registerUser } from '../authService';
-import api from '../api';
-
 // Mock de la API
 vi.mock('../api', () => ({
   default: {
@@ -17,15 +13,19 @@ const localStorageMock = {
   removeItem: vi.fn(),
   clear: vi.fn(),
 };
-global.localStorage = localStorageMock;
+globalThis.localStorage = localStorageMock;
 
 describe('Auth Service', () => {
   beforeEach(() => {
+    vi.resetModules();
     vi.clearAllMocks();
   });
 
   describe('loginUser', () => {
     it('should login user successfully and store token', async () => {
+      const { loginUser } = await import('../authService');
+      const api = (await import('../api')).default;
+
       const mockResponse = {
         data: {
           token: 'fake-jwt-token',
@@ -46,6 +46,8 @@ describe('Auth Service', () => {
     });
 
     it('should throw error on login failure', async () => {
+      const { loginUser } = await import('../authService');
+      const api = (await import('../api')).default;
       const mockError = new Error('Login failed');
       api.post.mockRejectedValue(mockError);
 
@@ -55,6 +57,8 @@ describe('Auth Service', () => {
 
   describe('registerUser', () => {
     it('should register user successfully', async () => {
+      const { registerUser } = await import('../authService');
+      const api = (await import('../api')).default;
       const userData = {
         email: 'newuser@example.com',
         password: 'password123',
@@ -77,6 +81,8 @@ describe('Auth Service', () => {
     });
 
     it('should throw error on registration failure', async () => {
+      const { registerUser } = await import('../authService');
+      const api = (await import('../api')).default;
       const userData = {
         email: 'existing@example.com',
         password: 'password123',
