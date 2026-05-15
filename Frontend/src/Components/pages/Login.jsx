@@ -26,6 +26,7 @@ function Login() {
 
         try {
             // Llamada al BFF (puerto 8082) que redirige al microservicio de Login (8081)
+            console.log(email, clave1);
             const response = await loginUser(email, clave1);
             
             console.log('Login exitoso:', response);

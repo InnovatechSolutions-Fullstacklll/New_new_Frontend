@@ -2,8 +2,9 @@
 import api from './api'; // Usar la configuración centralizada
 
 // Función de login
-export const loginUser = async (email, password) => {
-    const response = await api.post('/api/login/auth', { email, password });
+export const loginUser = async (email, clave1) => {
+    console.log(email, clave1);
+    const response = await api.post('/api/login/auth', { email, clave1 });
 
     // Si el login es exitoso, guardar el token
     if (response.data.token) {
@@ -15,6 +16,7 @@ export const loginUser = async (email, password) => {
 
 // Función de registro
 export const registerUser = async (userData) => {
+    console.log(userData);
     const response = await api.post('/api/register/user', userData);
     return response.data;
 };

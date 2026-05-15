@@ -45,9 +45,10 @@ export default function CrearCuenta() {
       const userData = {
         nombre: nombre,
         email: email,
-        password: clave1
+        clave1: clave1,
+        clave2: clave2
       }
-
+      console.log(userData);
       const response = await registerUser(userData)
       console.log('Registro exitoso:', response)
       
